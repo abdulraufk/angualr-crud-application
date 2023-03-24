@@ -1,0 +1,49 @@
+<button (click)="viewuser()">User Info</button>
+<!-- <button (click)="deletedata()">Delete data</button> -->
+<button (click)="showLoginForm = !showLoginForm">Update User</button>
+<button (click)="uploadimage = !uploadimage">uploadimage</button>
+<button (click)="logout()">Logout</button>
+
+<div *ngIf="showLoginForm">
+  <!-- <form 
+  (ngSubmit) ="updatedata()"
+  >
+    <h5>update data</h5>
+    <br />
+    <label>
+      Email:
+      <input type="email" name="email" [(ngModel)]="email1" />
+    </label>
+    <br />
+    <label>
+      Password:
+      <input type="password" name="password" [(ngModel)]="password1" />
+    </label>
+
+    <br />
+    <button type="submit">Update</button>
+    <p><a routerLink="/signup">Create an account</a></p>
+  </form>
+</div> -->
+
+<div class="card">
+  <div *ngFor="let user of users; let i = index" class="card-body">
+    <img
+      src="http://localhost:3302/{{ user.pic }}"
+      alt="Profile picture"
+      width="100px"
+      height="100px"
+    />
+    <label for="">Userinfo : </label>
+    <h4>UserName :{{ user.name | uppercase}} </h4>
+    <p>Email:{{ user.email }}</p>
+    <p>Password:{{ user.password }}</p>
+  </div>
+</div>
+<div class="profile-pic" *ngIf="uploadimage">
+  <input type="file" (change)="getfile($event)" />
+  <input type="button" (click)="uploadimg()" value="file upload" />
+
+  <!-- <input type="file" (change)="onFileSelected($event)" /> -->
+  <!-- <button (click)="fileInput.click()">Select File</button> -->
+</div>

@@ -1,0 +1,60 @@
+<div class="main-container">
+  <div class="form-container">
+    <form [formGroup] ="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> User Name </mat-label>
+        <input matInput formControlName ="username" required />
+        <mat-error
+          *ngIf ="
+            loginForm.controls.username.touched && loginForm.controls.username.invalid
+          "
+        >
+          <span *ngIf ="loginForm.controls.username.errors?.['required']"
+            >This field is mandatory.</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> E-mail </mat-label>
+        <input matInput formControlName="email" required />
+        <mat-error
+          *ngIf ="
+            loginForm.controls.email.touched && loginForm.controls.email.invalid
+          "
+        >
+          <span *ngIf ="loginForm.controls.email.errors?.['required']"
+            >This field is mandatory.</span
+          >
+          <span *ngIf ="loginForm.controls.email.errors?.['pattern']"
+            >Email is invalid .</span
+          >
+          <span *ngIf ="loginForm.get('email')?.errors?.['email']">
+            Email address is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Password </mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error
+          *ngIf ="
+            loginForm.controls.password.touched &&
+            loginForm.controls.password.invalid
+          "
+        >
+          <span *ngIf ="loginForm.controls.password.errors?.['required']"
+            >This field is mandatory.</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="red" [mat-dialog-close] ="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit" >
+        Add Student
+      </button>
+    </form>
+  </div>
+</div>
